@@ -16,3 +16,12 @@ build/
 # Cmake exceptions
 CMakeFiles/
 
+# cppdepend output
+CppDependOut/
+*.cdproj
+
+*.log
+assets/
+
+input_commands.txt
+errors.txt

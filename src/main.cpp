@@ -1,18 +1,16 @@
 // Copyright (c) 2023-2025 Orange. All rights reserved.
+// Copyright (c) 2025 Marc Ennaji.
 // This software is distributed under the BSD 3-Clause-clear License, the text of which is available
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
-#include "KMLearningProject.h"
+#include "application/KMLearningProject.h"
+#include "PLUseMPI.h"
 
 #define CGEDBG(x)cout << "[" << x << "]" << endl
 
 int main(int argc, char** argv)
 {
-	// Il faut definir USE_MPI avant de lancer le programme avec mpiexec
-#ifdef USE_MPI
-	PLParallelTask::UseMPI(GetLearningVersion());
-#endif // USE_MPI
-
+	UseMPI();
 
 #ifdef _DEBUG
 
@@ -21,13 +19,13 @@ int main(int argc, char** argv)
 	PLParallelTask::SetSimulatedSlaveNumber(4);
 
 	std::cout << "*******COMPILATION********" << std::endl;
-	std::cout << "    Khiops Enneade    " << std::endl;
+	std::cout << "    Enneade    " << std::endl;
 	std::cout << " VERSION ";
 	std::cout << " " << INTERNAL_VERSION << std::endl;
 	std::cout << __DATE__ << " " << __TIME__ << std::endl;
 	std::cout << "**************************" << std::endl;
 
-	Global::SetErrorLogFileName("kmean_exec.log");
+	Global::SetErrorLogFileName("enneade_errors.log");
 
 #endif
 
@@ -40,8 +38,9 @@ int main(int argc, char** argv)
 
 	SetLearningVersion(VERSION_FULL);
 
-	KMLearningProject learningProject;
+	enneade::application::KMLearningProject learningProject;
 	learningProject.Start(argc, argv);
 
 	return 0;
 }
+
