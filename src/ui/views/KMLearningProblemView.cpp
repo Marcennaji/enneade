@@ -3,8 +3,16 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMLearningProblemView.h"
-#include "KMLearningProject.h"
+
 #include "KMAnalysisSpecView.h"
+#include "KMPredictorEvaluatorView.h"
+#include "KMAnalysisResultsView.h"
+#include "KWLearningBenchmarkView.h"
+#include "domain/learning/KMLearningBenchmark.h"
+#include "domain/evaluation/KMPredictorEvaluator.h"
+
+#include "domain/learning/KMLearningProblem.h"
+
 
 KMLearningProblemView::KMLearningProblemView()
 {

@@ -3,10 +3,20 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMPredictorEvaluation.h"
-#include "KMClusteringQuality.h"
-#include "KMPredictorEvaluationTask.h"
 
 #include <sstream>
+
+#include "KMPredictorEvaluationTask.h"
+#include "SNBPredictorSelectiveNaiveBayes.h"
+
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMTrainedPredictor.h"
+#include "domain/clustering/KMAttributesPartitioningManager.h"
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Classe KMPredictorEvaluation

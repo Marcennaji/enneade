@@ -4,17 +4,25 @@
 
 #pragma once
 
-#include "KWObject.h"
-#include "KWClassStats.h"
-#include "KMCluster.h"
-#include "KMParameters.h"
-#include "KMAttributesPartitioningManager.h"
 
-// #define DEBUG_POST_OPTIMIZATION
-// #define DEBUG_POST_OPTIMIZATION_VNS
+class KWObject;
+class KWAttribute;
+class Symbol;
+class KWFrequencyTable;
+class NumericKeyDictionary;
+class ObjectArray;
+class KWLoadIndexVector;
+class KWDatabase;
 
+
+class KMCluster;
+class KMAttributesPartitioningManager;
 class KMClusteringInitializer;
 class KMClusteringQuality;
+
+#include "KMParameters.h"
+#include "Object.h"
+#include "KWContinuous.h"
 
 ///////////////////////////////////////////////////////////////////////////
 ///  Classe representant un clustering (ensemble de clusters), son parametrage, et les services associes, qui sont principalement : l' execution des "replicates", le calcul des indicateurs de qualite associes a chaque resultat de replicate, la selection du meilleur replicate en fonction du critere choisi (EVA, etc), la post optimisation du resultat du meilleur replicate
@@ -36,13 +44,13 @@ public:
 	/** cluster contenant toutes les instances, et stats associees */
 	KMCluster* GetGlobalCluster() const;
 
-	/** (re)creer un cluster global (utilisé en évaluation test ou train) */
+	/** (re)creer un cluster global (utilisï¿½ en ï¿½valuation test ou train) */
 	KMCluster* CreateGlobalCluster();
 
 	/** calcul K-Means : boucle principale d'un traitement de clustering */
 	bool ComputeReplicate(ObjectArray* instances, const KWAttribute* targetAttribute);
 
-	/** retourne le cluster dont le centre est le plus proche de l'objet passé en parametre */
+	/** retourne le cluster dont le centre est le plus proche de l'objet passï¿½ en parametre */
 	KMCluster* FindNearestCluster(KWObject*);
 
 	/** parametrage du clustering kmean */
@@ -54,13 +62,13 @@ public:
 	/** retourne le nombre final de clusters vides supprimes lors d'un clustering */
 	const int  GetDroppedClustersNumber() const;
 
-	/** initialise la liste des modalités de la variable cible (mode supervisé) */
+	/** initialise la liste des modalitï¿½s de la variable cible (mode supervisï¿½) */
 	void SetTargetAttributeValues(const ObjectArray&);
 
 	/** initialise le cluster global, a partir d'un autre resultat */
 	void SetGlobalCluster(KMCluster*);
 
-	/** retourne la liste des modalités de la variable cible (mode supervisé) */
+	/** retourne la liste des modalitï¿½s de la variable cible (mode supervisï¿½) */
 	const ObjectArray& GetTargetAttributeValues() const;
 
 	/** matrice de confusion du clustering */
@@ -76,10 +84,10 @@ public:
 	/** retourne la valeur du pourcentage devant etre lu, de la base de donnees devant etre lu (sert uniquement en cas de memoire insuffisante) */
 	const double GetUsedSampleNumberPercentage() const;
 
-	/** somme totale des distances des instances, par rapport à leurs clusters respectifs */
+	/** somme totale des distances des instances, par rapport ï¿½ leurs clusters respectifs */
 	const double GetClustersDistanceSum(KMParameters::DistanceType) const;
 
-	/** distance moyenne des instances de clusters à leur centre */
+	/** distance moyenne des instances de clusters ï¿½ leur centre */
 	const Continuous  GetMeanDistance() const;
 
 	/** distance entre deux instances de clusters, tous attributs confondus */
@@ -93,7 +101,7 @@ public:
 	static Continuous GetSimilarityBetween(const ContinuousVector& v1, const ContinuousVector& v2,
 		const ALString& targetModality1, const ALString& targetModality2, const KMParameters* parameters);
 
-	/** calculer les distances entre les différents centres des clusters, afin de produire une matrice des distances,
+	/** calculer les distances entre les diffï¿½rents centres des clusters, afin de produire une matrice des distances,
 	dont l'utilisation permettra une optimisation des performances */
 	void ComputeClustersCentersDistances(const boolean useEvaluationCentroids = false);
 
@@ -159,7 +167,7 @@ public:
 	/** construction "a la volee" (en parcourant sequentiellement la base) des tables de contingence servant au calcul des levels de clustering, a l'issue de l'apprentissage */
 	void ComputeClusteringLevels(KWDatabase*, KWClass* modelingClass, ObjectArray* attributesStats, ObjectArray* clusters);
 
-	/** levels de clustering (clé = nom de l'attribut natif, valeur = level) */
+	/** levels de clustering (clï¿½ = nom de l'attribut natif, valeur = level) */
 	NumericKeyDictionary& GetClusteringLevelsDictionary() const;
 
 protected:
@@ -170,13 +178,13 @@ protected:
 	/** deroulement des iterations d'1 replicate, jusqu'a convergence */
 	boolean DoClusteringIterations(const ObjectArray* instances, const longint maxInstances);
 
-	/** retourne le cluster dont le centre est le plus proche de l'objet passé en parametre (norme L1) */
+	/** retourne le cluster dont le centre est le plus proche de l'objet passï¿½ en parametre (norme L1) */
 	KMCluster* FindNearestClusterL1(KWObject*);
 
-	/** retourne le cluster dont le centre est le plus proche de l'objet passé en parametre (norme L2) */
+	/** retourne le cluster dont le centre est le plus proche de l'objet passï¿½ en parametre (norme L2) */
 	KMCluster* FindNearestClusterL2(KWObject*);
 
-	/** retourne le cluster dont le centre est le plus proche de l'objet passé en parametre (norme Cosinus) */
+	/** retourne le cluster dont le centre est le plus proche de l'objet passï¿½ en parametre (norme Cosinus) */
 	KMCluster* FindNearestClusterCosinus(KWObject*);
 
 	/** construire un cluster 'fictif' contenant toutes les instances, et calculer les statistiques correspondantes */
@@ -196,16 +204,16 @@ protected:
 
 	bool UpdateProgressionBar(const longint instancesNumber, const int iterationsDone, const int movements);
 
-	/** calcul des probabilites correspondant aux modalites de la variable cible (mode supervisé) */
+	/** calcul des probabilites correspondant aux modalites de la variable cible (mode supervisï¿½) */
 	void ComputeTrainingTargetProbs(const KWAttribute* targetAttribute);
 
 	/** en apprentissage, calcul de la matrice de confusion "classes majoritaires / classes reelles" */
 	void ComputeTrainingConfusionMatrix(const KWAttribute* targetAttribute);
 
-	/** determiner quelles sont les modalites de la variable cible (mode supervisé) */
+	/** determiner quelles sont les modalites de la variable cible (mode supervisï¿½) */
 	void ReadTargetAttributeValues(const ObjectArray* instances, const KWAttribute* targetAttribute);
 
-	/** sauvegarder les meilleurs clusters observés */
+	/** sauvegarder les meilleurs clusters observï¿½s */
 	void CloneBestClusters();
 
 	/** initialiser les tables de contingence permettant de caculer un level de clustering */
@@ -232,19 +240,19 @@ protected:
 
 	// ==============================================  attributs de la classe ===============================================
 
-	/** contient des objets KMCluster * , et représente l'etat courant des clusters, au fil des iterations */
+	/** contient des objets KMCluster * , et reprï¿½sente l'etat courant des clusters, au fil des iterations */
 	ObjectArray* kmClusters;
 
-	/** contient des objets KMCluster * , et sauvegarde le meilleur état observé au cours des iterations */
+	/** contient des objets KMCluster * , et sauvegarde le meilleur ï¿½tat observï¿½ au cours des iterations */
 	ObjectArray* kmBestClusters;
 
-	/** cluster global : permet la construction des statistiques globales, calculées à partir de toutes les instances */
+	/** cluster global : permet la construction des statistiques globales, calculï¿½es ï¿½ partir de toutes les instances */
 	KMCluster* kmGlobalCluster;
 
-	/** somme des distances des instances, par rapport à leurs centres de clusters respectifs */
+	/** somme des distances des instances, par rapport ï¿½ leurs centres de clusters respectifs */
 	ContinuousVector cvClustersDistancesSum;
 
-	/** contient des StringObject *, et représente les modalités de l'attribut cible, en mode supervisé */
+	/** contient des StringObject *, et reprï¿½sente les modalitï¿½s de l'attribut cible, en mode supervisï¿½ */
 	ObjectArray oaTargetAttributeValues;
 
 	/** parametres du traitement de clustering */
@@ -262,29 +270,29 @@ protected:
 	/** nombre d'iterations effectuees au cours du clustering */
 	int iIterationsDone;
 
-	/** nombre de clusters vides supprimés */
+	/** nombre de clusters vides supprimï¿½s */
 	int iDroppedClustersNumber;
 
 	/** pourcentage de la base qui a ete lue (utile en cas de memoire insuffisante) */
 	double dUsedSampleNumberPercentage;
 
-	/** matrice 2 dimensions (ligne = n° de cluster, colonne = n° de cluster) qui contient les distances entre chaque centre de cluster */
+	/** matrice 2 dimensions (ligne = nï¿½ de cluster, colonne = nï¿½ de cluster) qui contient les distances entre chaque centre de cluster */
 	Continuous** clustersCentersDistances;
 
-	/** correspondance, à un instant T, entre une instance et son cluster d'appartenance. Clé = pointeur sur KWObject. Valeur = pointeur sur KMCluster */
+	/** correspondance, ï¿½ un instant T, entre une instance et son cluster d'appartenance. Clï¿½ = pointeur sur KWObject. Valeur = pointeur sur KMCluster */
 	NumericKeyDictionary* instancesToClusters;
 
 	/** matrice de confusion "classes predites (ou majoritaires) versus classes reelles", mode supervise et phase de train
 	colonne = classe reelle, ligne = classe predite */
 	KWFrequencyTable* kwftConfusionMatrix;
 
-	/** dictionnaire contenant les levels de clustering. Clé = nom de l'attribut natif, valeur = level */
+	/** dictionnaire contenant les levels de clustering. Clï¿½ = nom de l'attribut natif, valeur = level */
 	NumericKeyDictionary nkdClusteringLevels;
 
-	/**  tables de contingences pour le calcul les levels sur le clustering : Cle = lnom d'attribut, Valeur = KWFrequencyTable * --> comptage des modalités groupées ou d'intervalles pour un attribut donné */
+	/**  tables de contingences pour le calcul les levels sur le clustering : Cle = lnom d'attribut, Valeur = KWFrequencyTable * --> comptage des modalitï¿½s groupï¿½es ou d'intervalles pour un attribut donnï¿½ */
 	ObjectDictionary odGroupedModalitiesFrequencyTables;
 
-	/** stocker les noms d'attributs natifs, afin de garantir la persistance memoire des SymbolData utilisés comme clés, dans le dictionnaire nkdClusteringLevels */
+	/** stocker les noms d'attributs natifs, afin de garantir la persistance memoire des SymbolData utilisï¿½s comme clï¿½s, dans le dictionnaire nkdClusteringLevels */
 	SymbolVector svNativeAttributesNames;
 
 	friend class PLShared_Clustering;
@@ -340,11 +348,6 @@ inline KMCluster* KMClustering::GetGlobalCluster() const
 	return kmGlobalCluster;
 }
 
-inline KMCluster* KMClustering::GetCluster(const int idx) const
-{
-	assert(idx < GetClusters()->GetSize());
-	return cast(KMCluster*, GetClusters()->GetAt(idx));
-}
 
 inline Continuous** KMClustering::GetClustersCentersDistances() const {
 

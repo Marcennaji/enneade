@@ -4,6 +4,8 @@
 
 #include "KMClassStats.h"
 
+#include "domain/clustering/KMParameters.h"
+
 KMClassStats::KMClassStats() {
 
 	parameters = NULL;

@@ -8,8 +8,8 @@
 #define INTERNAL_VERSION "10.7.0.0_i1"
 
 #include "KWLearningProject.h"
-#include "KMLearningProblem.h"
-#include "KMLearningProblemView.h"
+class KWLearningProblem;
+class KWLearningProblemView;
 
 /// Service de lancement du projet Kmeans
 

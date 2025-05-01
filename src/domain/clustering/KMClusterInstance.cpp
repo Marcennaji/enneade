@@ -4,6 +4,10 @@
 
 #include "KMClusterInstance.h"
 
+#include "KWClass.h"
+
+#include "KMParameters.h"
+
 
 KMClusterInstance::KMClusterInstance(){
 
@@ -30,12 +34,12 @@ void KMClusterInstance::AddLoadedAttributes(const KWObject * kwo){
 		ALString recodedAttributeName;
 
 		if (parameters->GetNativeAttributeName(attribute->GetName()) == ""){
-			// l'attribut recodé correspondant n'a pas été trouvé : c'est donc un attribut natif
+			// l'attribut recodï¿½ correspondant n'a pas ï¿½tï¿½ trouvï¿½ : c'est donc un attribut natif
 			nativeAttributeName = attribute->GetName();
 			recodedAttributeName = "";
 		}
 		else{
-			// c'est un attribut recodé
+			// c'est un attribut recodï¿½
 			nativeAttributeName = parameters->GetNativeAttributeName(attribute->GetName());
 			recodedAttributeName = attribute->GetName();
 		}

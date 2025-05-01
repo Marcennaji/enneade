@@ -4,12 +4,11 @@
 
 #pragma once
 
-#include "KMParameters.h"
-
-#include "KMModelingSpecView.h"
-#include "KWVersion.h"
-
 class KMModelingSpecView;
+
+#include "UserInterface.h"
+
+
 
 ////////////////////////////////////////////////////////////
 // Classe KMParametersView

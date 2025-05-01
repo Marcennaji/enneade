@@ -3,8 +3,14 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMPredictorReport.h"
-#include "KMClusteringQuality.h"
-#include "KMPredictorKNN.h"
+
+#include "domain/learning/KMPredictor.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMClusterInstance.h"
+#include "domain/clustering/KMParameters.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Classe KMPredictorReport
@@ -379,8 +385,8 @@ void KMPredictorReport::WriteCenterRealNativeInstances(ostream& ost) {
 			continue;
 
 		if (attribute->nativeName.GetLength() >= 9 and attribute->nativeName.Left(9) == "CellIndex")
-			// cas particulier. Les attributs CellIndex ne sont pas des attributs recodés, ni des attributs natifs à proprement parler (meme s'ils sont traites comme tels).
-			// Ils servent à produire certaines statistiques.
+			// cas particulier. Les attributs CellIndex ne sont pas des attributs recodï¿½s, ni des attributs natifs ï¿½ proprement parler (meme s'ils sont traites comme tels).
+			// Ils servent ï¿½ produire certaines statistiques.
 			continue;
 
 		ost << attribute->nativeName << "\t";
@@ -627,8 +633,8 @@ void KMPredictorReport::WriteJSONCenterRealNativeInstances(JSONFile* fJSON) {
 			continue;
 
 		if (attribute->nativeName.GetLength() >= 9 and attribute->nativeName.Left(9) == "CellIndex")
-			// cas particulier. Les attributs CellIndex ne sont pas des attributs recodés, ni des attributs natifs à proprement parler (meme s'ils sont traites comme tels).
-			// Ils servent à produire certaines statistiques.
+			// cas particulier. Les attributs CellIndex ne sont pas des attributs recodï¿½s, ni des attributs natifs ï¿½ proprement parler (meme s'ils sont traites comme tels).
+			// Ils servent ï¿½ produire certaines statistiques.
 			continue;
 
 		fJSON->BeginObject();

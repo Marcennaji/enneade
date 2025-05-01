@@ -4,10 +4,11 @@
 
 #pragma once
 
-#include "KWDatabaseTask.h"
-#include "KMLearningProblem.h"
-
 class KMLearningProblem;
+class KMParameters;
+
+#include "KWDatabaseTask.h"
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Tache parallelisee d'initialisation de clustering, selon l'algo Random
@@ -43,7 +44,7 @@ protected:
 
 	// variables membres du maitre
 	const KMParameters* master_parameters;
-	ObjectArray master_centers;// liste des centres trouvés (liste de ContinuousVector *)
+	ObjectArray master_centers;// liste des centres trouvï¿½s (liste de ContinuousVector *)
 
 	// variables membres des esclaves
 	/** indique si un esclave doit continuer a parcourir sa portion de BDD afin de trouver de nouveaux centres */

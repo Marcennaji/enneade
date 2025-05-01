@@ -4,17 +4,13 @@
 
 #pragma once
 
-#include "KWPredictorEvaluation.h"
 
-#include "KMParameters.h"
-#include "KMCluster.h"
-#include "KMClustering.h"
-#include "KMPredictor.h"
-#include "KMTrainedPredictor.h"
-
-class KMPredictor;
+class KWPredictor;
+class KMClustering;
 class KMTrainedPredictor;
 class KMPredictorEvaluationTask;
+
+#include "KWPredictorEvaluation.h"
 
 ///////////////////////
 /// Evaluation d'un predicteur KMeans
@@ -70,7 +66,7 @@ public:
 	/** tableau des medianes de valeurs continues, par cluster, pour chaque attribut natif */
 	static void WriteContinuousMedianValues(ostream& ost, const KMClustering* result, const ObjectArray* oaAttributesList, const longint iReadInstancesForMedianComputation, const longint lInstanceEvaluationNumber);
 
-	/** tableau des % d'instances de clusters ayant une valeur de modalité donnée */
+	/** tableau des % d'instances de clusters ayant une valeur de modalitï¿½ donnï¿½e */
 	static void WriteCategoricalModeValues(ostream& ost, const KMClustering* result, const ObjectDictionary& atomicModalitiesFrequencyTables, const ObjectArray* oaAttributesList, const KWClass*);
 
 	/** tableau des probas des attributs natifs, % par cluster et par modalite */

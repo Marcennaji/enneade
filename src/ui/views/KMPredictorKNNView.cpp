@@ -4,6 +4,12 @@
 
 #include "KMPredictorKNNView.h"
 
+#include "domain/learning/KMPredictorKNN.h"
+
+#include "domain/clustering/KMParameters.h"
+#include "KMParametersView.h"
+
+
 
 KMPredictorKNNView::KMPredictorKNNView()
 {

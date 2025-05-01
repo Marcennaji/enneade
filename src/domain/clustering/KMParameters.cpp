@@ -3,7 +3,17 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMParameters.h"
-#include "KMParametersView.h"
+
+#include "KWObject.h"
+#include "KWLoadIndex.h"
+#include "KWClass.h"
+#include "KWAttribute.h"
+#include "JSONFile.h"
+
+
+#include "ui/views/KMParametersView.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/clustering/KMClustering.h"
 
 
 KMParameters::KMParameters()
@@ -54,7 +64,7 @@ KMParameters::~KMParameters()
 
 void KMParameters::AddAttributes(const KWClass* kwc) {
 
-	// memoriser les attributs chargés, à partir d'un dico
+	// memoriser les attributs chargï¿½s, ï¿½ partir d'un dico
 
 	require(kwc != NULL);
 	require(kwc->Check());
@@ -76,7 +86,7 @@ void KMParameters::AddAttributes(const KWClass* kwc) {
 
 		IntObject* io = new IntObject;
 		io->SetInt(livLoadedAttributesLoadIndexes.GetSize() - 1); // pouvoir retrouver indirectement l'index de chargement de l'attribut (car helas, KWLoadIndex n'herite pas de Object, donc pas possible de mettre un KWLoadIndex * comme valeur)
-		odLoadedAttributesNames.SetAt(attribute->GetName(), io);// liste de tous les attributs chargés
+		odLoadedAttributesNames.SetAt(attribute->GetName(), io);// liste de tous les attributs chargï¿½s
 
 		if (attribute->GetConstMetaData()->IsKeyPresent(KM_ATTRIBUTE_LABEL)) {
 			odKMeanAttributesNames.SetAt(attribute->GetName(), io->Clone());
@@ -95,7 +105,7 @@ void KMParameters::AddAttributes(const KWClass* kwc) {
 
 void KMParameters::AddRecodedAttribute(const KWAttribute* nativeAttribute, const KWAttribute* recodedAttribute) {
 
-	// garder la trace de la correspondance entre attribut natif et attribut recodé, aux fins d'affichage dans les rapports
+	// garder la trace de la correspondance entre attribut natif et attribut recodï¿½, aux fins d'affichage dans les rapports
 
 	require(nativeAttribute != NULL);
 	require(recodedAttribute != NULL);
@@ -861,7 +871,7 @@ void KMParameters::PrepareDeploymentClass(KWClass* modelingClass) {
 
 	modelingClass->Compile();
 
-	// renseigner les differentes structures permettant de retrouver les informations liées aux attributs
+	// renseigner les differentes structures permettant de retrouver les informations liï¿½es aux attributs
 	// ce sont notamment les index de chargements, memorises pour des questions de performance
 	AddAttributes(modelingClass);
 }
@@ -940,7 +950,7 @@ boolean KMParameters::Check()
 {
 	boolean bOk = true;
 
-	// si pas de variable cible, passer automatiquement la selection des replicates sur le critère "distance"
+	// si pas de variable cible, passer automatiquement la selection des replicates sur le critï¿½re "distance"
 	if (replicateChoice == ReplicateChoice::ReplicateChoiceAutomaticallyComputed)
 		replicateChoice = (bSupervisedMode ? ARIByClusters : Distance);
 

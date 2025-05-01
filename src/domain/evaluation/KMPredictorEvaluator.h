@@ -6,7 +6,6 @@
 
 #include "KWPredictorEvaluator.h"
 
-#include "KMClassifierEvaluation.h"
 
 ////////////////////////////////////////////////////////////
 // Classe KMPredictorEvaluator

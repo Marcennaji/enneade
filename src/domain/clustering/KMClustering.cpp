@@ -3,9 +3,23 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMClustering.h"
+
+#include <cmath>
+#include "KWVersion.h"
+#include "TaskProgression.h"
+#include "KWFrequencyVector.h"
+#include "KWSymbol.h"
+#include "KWAttributeStats.h"
+#include "KWAttribute.h"
+#include "Object.h"
+
+#include "KWDatabase.h"
+
+
+#include "KMCluster.h"
 #include "KMClusteringQuality.h"
 #include "KMClusteringInitializer.h"
-#include <cmath>
+#include "KMAttributesPartitioningManager.h"
 
 KMClustering::KMClustering(KMParameters* p)
 {
@@ -2953,6 +2967,11 @@ void KMClustering::ResetInstancesWithMissingValuesNumber() {
 	clusteringInitializer->ResetInstancesWithMissingValuesNumber();
 }
 
+KMCluster* KMClustering::GetCluster(const int idx) const
+{
+	assert(idx < GetClusters()->GetSize());
+	return cast(KMCluster*, GetClusters()->GetAt(idx));
+}
 
 //////////////////////////////////////////////////////////
 // Classe PLShared_Clustering

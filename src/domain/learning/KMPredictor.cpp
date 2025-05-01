@@ -3,14 +3,29 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMPredictor.h"
-#include "KMParametersView.h"
-#include "KMClusteringQuality.h"
-
-#include <KWPredictorUnivariate.h>
-#include "KWSTDatabaseTextFile.h"
-#include "KMLearningProject.h"
 
 #include <sstream>
+#include "KWPredictorNaiveBayes.h"
+#include "SNBPredictorSelectiveNaiveBayes.h"
+
+#include "KMDRLocalModelChooser.h"
+#include "KMDRClassifier.h"
+#include "KMTrainedPredictor.h"
+#include "KMTrainedClassifier.h"
+#include "ui/views/KMParametersView.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMClusteringMiniBatch.h"
+#include "domain/clustering/KMClusterInstance.h"
+#include "domain/clustering/KMAttributesPartitioningManager.h"
+#include "domain/evaluation/KMPredictorReport.h"
+#include "domain/evaluation/KMPredictorEvaluation.h"
+#include "domain/evaluation/KMClassifierEvaluation.h"
+
+
+
 
 KMPredictor::KMPredictor()
 {
@@ -130,9 +145,6 @@ boolean KMPredictor::InternalTrain()
 	require(GetClassStats()->IsStatsComputed());
 
 	Global::SetSilentMode(false);
-
-	if (parameters->GetVerboseMode())
-		AddSimpleMessage("Enneade internal version is " + ALString(INTERNAL_VERSION));
 
 	// nettoyer les eventuels metadatas specifiques kmean qui pourraient �tre pr�sents dans le dico d'input
 	GetClass()->RemoveAllAttributesMetaDataKey(KMParameters::SELECTED_NATIVE_ATTRIBUTE_LABEL);

@@ -4,17 +4,12 @@
 
 #pragma once
 
-#include "KWPredictorEvaluation.h"
-
-#include "KMParameters.h"
-#include "KMCluster.h"
-#include "KMClustering.h"
-#include "KMPredictor.h"
-#include "KMTrainedClassifier.h"
-
-class KMPredictor;
+class JSONFile;
 class KMTrainedClassifier;
 class KMClassifierEvaluationTask;
+
+#include "KWPredictorEvaluation.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Evaluation d'un classifieur KMean

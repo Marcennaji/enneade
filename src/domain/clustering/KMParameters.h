@@ -4,9 +4,16 @@
 
 #pragma once
 
+class KWLoadIndex;
+class KWClass;
+class KWAttribute;
+class JSONFile;
+
+
 #include "Object.h"
-#include "KWClass.h"
-#include "KWPredictorReport.h"
+#include "KWLoadIndex.h"
+#include "KWObject.h"
+#include "KWContinuous.h"
 
 int KMCompareLabels(const void* elem1, const void* elem2);
 

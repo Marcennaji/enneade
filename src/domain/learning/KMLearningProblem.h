@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "KWLearningProblem.h"
+class KMLearningBenchmark;
+class KMPredictorEvaluator;
 
-#include "KMModelingSpec.h"
-#include "KMPredictorReport.h"
-#include "KMLearningBenchmark.h"
-#include "KMPredictorEvaluator.h"
-#include "KMAnalysisResults.h"
+#include "KWLearningProblem.h"
 
 ////////////////////////////////////////////////////////////////
 /// Classe KMLearningProblem :  Gestion de l'apprentissage avec kmean

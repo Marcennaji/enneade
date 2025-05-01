@@ -4,8 +4,10 @@
 
 #pragma once
 
+class KMParameters;
+
 #include <KWClassStats.h>
-#include "KMParameters.h"
+
 
 /// classe servant a la specialisation KMean de l'ecriture du rapport de preparation
 class KMClassStats : public KWClassStats

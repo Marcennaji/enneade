@@ -4,7 +4,12 @@
 // see the "LICENSE" file for more details.
 
 #include "KMPredictorEvaluator.h"
-#include "KMPredictorKNN.h"
+
+#include "domain/learning/KMTrainedPredictor.h"
+#include "domain/learning/KMTrainedClassifier.h"
+#include "domain/learning/KMPredictorKNN.h"
+#include "domain/evaluation/KMClassifierEvaluation.h"
+#include "domain/evaluation/KMPredictorEvaluation.h"
 
 // modification de la methode ancetre, afin d'ajouter des objets
 // KMTrainedClassifier ou KMTrainedPredictor au tableau

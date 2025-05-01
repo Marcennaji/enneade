@@ -3,8 +3,14 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMTrainedPredictor.h"
-#include "KMParametersView.h"
 
+#include "ui/views/KMParametersView.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMAttributesPartitioningManager.h"
+
+#include "KMPredictor.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Classe KMTrainedPredictor

@@ -3,7 +3,10 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMClusteringInitializer.h"
+
+#include "KMCluster.h"
 #include "KMClustering.h"
+#include "KMClusterInstance.h"
 #include "KMClusteringQuality.h"
 #include "KMRandomInitialisationTask.h"
 

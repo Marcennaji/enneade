@@ -4,10 +4,15 @@
 
 #pragma once
 
-#include "KWObject.h"
-#include "KMParameters.h"
-#include "KMClustering.h"
-#include "KMCluster.h"
+class KMParameters;
+class KMCluster;
+class KWFrequencyTable;
+class KWAttribute;
+
+#include "Object.h"
+#include "KWContinuous.h"
+
+
 
 ///////////////////////////////////
 /// classe de mesure de la qualite d'un clustering, en fonction de divers criteres (ARI, EVA, NMI, Davies Bouldin....)
@@ -117,10 +122,10 @@ protected:
 	/** calcul du LEVA */
 	double ComputeLEVA(const int clustersNumber, KMCluster* globalCluster, const ObjectArray& oaTargetAttributeValues);
 
-	/* calcul de factorielle utilisé dans le calcul de l'Adjusted Rand Index */
+	/* calcul de factorielle utilisï¿½ dans le calcul de l'Adjusted Rand Index */
 	double ComputeARIFactorial(long int n, int k);
 
-	/** initialiser les probas des valeurs cibles pour le cluster global, à partir des clusters construits */
+	/** initialiser les probas des valeurs cibles pour le cluster global, ï¿½ partir des clusters construits */
 	void InitializeGlobalTargetProbs(KMCluster* globalCluster, const int nbTargetModalities);
 
 	/** clustering courant */

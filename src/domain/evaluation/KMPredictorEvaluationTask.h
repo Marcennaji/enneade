@@ -4,10 +4,14 @@
 
 #pragma once
 
-#include "KWPredictorEvaluationTask.h"
-#include "KMPredictorEvaluation.h"
-
 class KMPredictorEvaluation;
+class KMCluster;
+
+#include "KWPredictorEvaluationTask.h"
+
+#include "Object.h"
+
+#include "domain/clustering/KMClustering.h"
 
 //////////////////////////////////////////////
 /// tache d'evaluation d'un predicteur KMeans
@@ -34,10 +38,10 @@ public:
 	/** acces au nombre d'instances utilisees lors de l'evaluation */
 	longint GetInstanceEvaluationNumber() const;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités groupées ou d'intervalles pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s groupï¿½es ou d'intervalles pour un attribut donnï¿½ */
 	const ObjectDictionary& GetGroupedModalitiesFrequencyTables() const;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités non groupées pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s non groupï¿½es pour un attribut donnï¿½ */
 	const ObjectDictionary& GetAtomicModalitiesFrequencyTables() const;
 
 	//////////////////////////////////////////////////////////////////////////////
@@ -71,11 +75,11 @@ protected:
 	longint lInstanceEvaluationNumber;
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités groupees ou intervalles d'un attribut */
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s groupees ou intervalles d'un attribut */
 	ObjectDictionary* odAttributesPartitions;
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités non groupées ('atomiques') d'un attribut */
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s non groupï¿½es ('atomiques') d'un attribut */
 	ObjectDictionary* odAtomicModalities;
 
 	/** clustering de l'evaluation */
@@ -84,10 +88,10 @@ protected:
 	/** cluster global de l'evaluation */
 	KMCluster* kmGlobalCluster;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités groupées ou d'intervalles pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s groupï¿½es ou d'intervalles pour un attribut donnï¿½ */
 	ObjectDictionary odGroupedModalitiesFrequencyTables;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités non groupées pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s non groupï¿½es pour un attribut donnï¿½ */
 	ObjectDictionary odAtomicModalitiesFrequencyTables;
 
 	/** nbre d'instances lues pour le calcul des valeurs medianes */

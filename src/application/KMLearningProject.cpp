@@ -3,10 +3,18 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMLearningProject.h"
-#include "KMClassifierEvaluationTask.h"
-#include "KMPredictorEvaluationTask.h"
-#include "KMRandomInitialisationTask.h"
-#include "KMPredictorKNNView.h"
+
+#include "KWLearningProject.h"
+
+#include "domain/learning/KMLearningProblem.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMPredictorKNN.h"
+#include "ui/views/KMLearningProblemView.h"
+#include "ui/views/KMPredictorView.h"
+#include "domain/evaluation/KMClassifierEvaluationTask.h"
+#include "domain/evaluation/KMPredictorEvaluationTask.h"
+#include "domain/clustering/KMRandomInitialisationTask.h"
+#include "ui/views/KMPredictorKNNView.h"
 #include "KMDRRegisterAllRules.h"
 
 KMLearningProject::KMLearningProject()

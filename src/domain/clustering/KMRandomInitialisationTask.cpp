@@ -4,6 +4,11 @@
 
 #include "KMRandomInitialisationTask.h"
 
+#include "domain/learning/KMLearningProblem.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/clustering/KMClustering.h"
+#include "KMParameters.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 // Classe KMRandomInitialisationTask
 

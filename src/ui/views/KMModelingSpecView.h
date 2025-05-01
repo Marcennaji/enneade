@@ -4,10 +4,8 @@
 
 #pragma once
 
-#include "UserInterface.h"
-#include "KMModelingSpec.h"
+
 #include "KWModelingSpecView.h"
-#include "KMPredictorView.h"
 
 ////////////////////////////////////////////////////////////
 /// vue sur les parametres de modele KMeans

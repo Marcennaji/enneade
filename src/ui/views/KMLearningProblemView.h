@@ -4,13 +4,11 @@
 
 #pragma once
 
-#include "KWLearningBenchmarkView.h"
+class KMLearningProblem;
 
-#include "KMLearningProblem.h"
 #include "KWLearningProblemView.h"
-#include "KMModelingSpecView.h"
-#include "KMPredictorEvaluatorView.h"
-#include "KMAnalysisResultsView.h"
+
+
 
 ////////////////////////////////////////////////////////////////
 /// Classe KMLearningProblemView : Vue sur la gestion de l'apprentissage avec k-means

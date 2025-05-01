@@ -4,8 +4,21 @@
 // see the "LICENSE" file for more details.
 
 #include "KMCluster.h"
-#include "KMClustering.h"
 
+#include "KWAttributeStats.h"
+#include "KWObject.h"
+#include "KWClass.h"
+#include "KWAttribute.h"
+#include "KWContinuous.h"
+
+
+#include "KMClustering.h"
+#include "KMClusterInstance.h"
+#include "KMParameters.h"
+#include "KMClusterInstance.h"
+#include "KMParameters.h"
+
+    
 KMCluster::KMCluster(const KMParameters *params) : parameters(params) {
   InitializeStatistics();
   iIndex = -1;

@@ -3,8 +3,8 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMPredictorKNN.h"
-#include "KMLearningProject.h"
 
+#include "domain/clustering/KMParameters.h"
 
 KMPredictorKNN::KMPredictorKNN()
 {

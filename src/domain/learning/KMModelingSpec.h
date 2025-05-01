@@ -4,9 +4,8 @@
 
 #pragma once
 
+class KMPredictor;
 
-#include "KMPredictor.h"
-#include "KMPredictorKNN.h"
 #include "KWModelingSpec.h"
 
 

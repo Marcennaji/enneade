@@ -3,7 +3,13 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMClusteringMiniBatch.h"
+
+#include "KWDatabase.h"
+#include "KWFrequencyVector.h"
+#include "KWAttribute.h"
+
 #include "KMClusteringQuality.h"
+#include "KMCluster.h"
 
 KMClusteringMiniBatch::KMClusteringMiniBatch(KMParameters* p) : KMClustering(p)
 {

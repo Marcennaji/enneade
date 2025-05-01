@@ -4,6 +4,15 @@
 
 #include "KMClusteringQuality.h"
 
+#include "KWObject.h"
+#include "KWClass.h"
+#include "KWClassStats.h"
+#include "KWAttribute.h"
+
+#include "KMCluster.h"
+#include "KMClustering.h"
+
+
 KMClusteringQuality::KMClusteringQuality() {
 
 	dEVA = 0.0;

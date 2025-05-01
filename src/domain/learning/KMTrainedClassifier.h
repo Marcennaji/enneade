@@ -4,16 +4,14 @@
 
 #pragma once
 
-#include "KWTrainedPredictor.h"
-
-#include "KMPredictor.h"
-#include "KMCluster.h"
 
 class KMParameters;
 class KMClustering;
 
+#include "KWTrainedPredictor.h"
+
 /////////////////////////////////////////////////////////////////////////////
-/// Classifieur issu de l'apprentissage kmean (cas supervisé)
+/// Classifieur issu de l'apprentissage kmean (cas supervisï¿½)
 //
 
 class KMTrainedClassifier : public KWTrainedClassifier
@@ -29,7 +27,7 @@ public:
 	/** extraire les intervalles/modalites des attributs necessaires, a partir d'un dico */
 	void ExtractPartitions(KWClass* aClass);
 
-	/** acces au modele resultant d'un apprentissage KMean, reconstitué a partir d'un dico de modelisation */
+	/** acces au modele resultant d'un apprentissage KMean, reconstituï¿½ a partir d'un dico de modelisation */
 	KMClustering* GetModelingClustering() const;
 
 	/////////////////////////////////////////////////////////
@@ -46,13 +44,13 @@ protected:
 	Continuous CellIndexVClass	 = CellIndex(VClass, Class) */
 	void ExtractSourceConditionalInfoCategorical(const KWAttribute* attribute, const KWAttribute* nativeAttribute);
 
-	/** retrouver les valeurs cibles, dans un resultat kmean reconstitué a partir d'un dictionnaire de modelisation */
+	/** retrouver les valeurs cibles, dans un resultat kmean reconstituï¿½ a partir d'un dictionnaire de modelisation */
 	bool CreateTargetValues();
 
 	/** retrouver les valeurs cibles et les probas de l'apprentissage, a partir d'un attribut classifieur de type global */
 	void CreateTargetValuesAndTargetProbs(KWAttribute* classifierAttribute);
 
-	/** modele reconstitué a partir d'un dico de modelisation, ou recuperé a partir d'un apprentissage effectué) */
+	/** modele reconstituï¿½ a partir d'un dico de modelisation, ou recuperï¿½ a partir d'un apprentissage effectuï¿½) */
 	KMClustering* kmModelingClustering;
 
 	/** parametres d'un traitement kmean */

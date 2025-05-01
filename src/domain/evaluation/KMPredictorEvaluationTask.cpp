@@ -3,8 +3,14 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMPredictorEvaluationTask.h"
-#include "KMClusteringQuality.h"
-#include "KMLearningProject.h"
+
+#include "KMPredictorEvaluation.h"
+#include "domain/learning/KMTrainedPredictor.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMAttributesPartitioningManager.h"
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Classe KMPredictorEvaluationTask
@@ -33,7 +39,6 @@ KMPredictorEvaluationTask::~KMPredictorEvaluationTask()
 boolean KMPredictorEvaluationTask::MasterInitialize()
 {
 
-	AddSimpleMessage("Enneade internal version is " + ALString(INTERNAL_VERSION));
 	return KWPredictorEvaluationTask::MasterInitialize();
 
 }

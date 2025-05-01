@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 
 	SetLearningVersion(VERSION_FULL);
 
-	enneade::application::KMLearningProject learningProject;
+	KMLearningProject learningProject;
 	learningProject.Start(argc, argv);
 
 	return 0;

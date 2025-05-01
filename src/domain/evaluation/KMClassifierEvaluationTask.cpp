@@ -3,9 +3,14 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMClassifierEvaluationTask.h"
-#include "KMClusteringQuality.h"
-#include "KMLearningProject.h"
 
+#include "KMClassifierEvaluation.h"
+#include "domain/learning/KMTrainedClassifier.h"
+#include "domain/clustering/KMAttributesPartitioningManager.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMCluster.h"
+#include "KMPredictorEvaluation.h"
 
 KMClassifierEvaluationTask::KMClassifierEvaluationTask()
 {
@@ -353,8 +358,6 @@ boolean KMClassifierEvaluationTask::MasterInitialize()
 	require(masterAucEvaluation == NULL);
 	require(masterInstanceEvaluationSampler == NULL);
 	require(evaluationInstances == NULL);
-
-	AddSimpleMessage("Enneade internal version is " + ALString(INTERNAL_VERSION));
 
 	// Memorisation de la specialisation du rapport d'evaluation demandeur
 	classifierEvaluation = cast(KWClassifierEvaluation*, predictorEvaluation);

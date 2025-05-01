@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "Object.h"
 #include "KWAnalysisResults.h"
 
 

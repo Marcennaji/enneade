@@ -4,8 +4,13 @@ project(enneade CXX)
 
 set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type" FORCE)
 
+# for now, Enforce C++11 standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # Enable RTTI (Run-Time Type Information)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR ")
 
 set(MPI_CXX_INCLUDE_PATH "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
 set(MPI_CXX_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpi.lib")
@@ -27,6 +32,7 @@ FetchContent_GetProperties(khiops SOURCE_DIR KHIOPS_SOURCE_DIR)
 
 file(GLOB_RECURSE files  ${PROJECT_SOURCE_DIR}/src/*cpp ${PROJECT_SOURCE_DIR}/src/*h )
 add_executable(enneade  ${files} )
+
 set_khiops_options(enneade)
 
 target_include_directories(enneade PRIVATE ${PROJECT_SOURCE_DIR}/src ${KHIOPS_SOURCE_DIR}/src/Learning/KWDataUtils  ${KHIOPS_SOURCE_DIR}/src/Parallel/PLMPI)

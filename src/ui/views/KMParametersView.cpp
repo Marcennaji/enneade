@@ -4,6 +4,10 @@
 
 #include "KMParametersView.h"
 
+#include "KWVersion.h"
+
+#include "domain/clustering/KMParameters.h"
+
 KMParametersView::KMParametersView()
 {
 	SetIdentifier(KMPARAMETERS_FIELD_NAME);

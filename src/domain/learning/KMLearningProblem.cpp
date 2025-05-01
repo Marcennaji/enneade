@@ -3,8 +3,20 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMLearningProblem.h"
-#include "KMLearningProject.h"
-#include "KMClassStats.h"
+
+#include "KMLearningBenchmark.h"
+#include "domain/preprocessing/KMClassStats.h"
+#include "domain/evaluation/KMPredictorEvaluator.h"
+#include "domain/evaluation/KMAnalysisResults.h"
+#include "domain/evaluation/KMPredictorReport.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/learning/KMModelingSpec.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMPredictorKNN.h"
+
+
 
 KMLearningProblem::KMLearningProblem()
 {

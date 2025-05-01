@@ -4,6 +4,7 @@
 
 #include "KMAnalysisResultsView.h"
 
+#include "domain/evaluation/KMAnalysisResults.h"
 
 KMAnalysisResultsView::KMAnalysisResultsView()
 {

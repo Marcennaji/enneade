@@ -3,7 +3,6 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KWPredictorEvaluatorView.h"
-#include "KMPredictorEvaluator.h"
 
 ///////////////////////////////////
 /// vue sur l'evluation d'un predicteur KMeans

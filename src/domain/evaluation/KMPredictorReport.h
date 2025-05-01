@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "KWPredictorReport.h"
-#include "KWLearningSpec.h"
-
-#include "KMClustering.h"
-#include "KMPredictor.h"
-
+class KMClustering;
 class KMPredictor;
+
+#include "KWPredictorReport.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Rapport d'apprentissage pour predicteur KMean

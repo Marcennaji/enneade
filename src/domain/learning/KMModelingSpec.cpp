@@ -4,6 +4,10 @@
 
 #include "KMModelingSpec.h"
 
+#include "domain/clustering/KMParameters.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMPredictorKNN.h"
+
 
 KMModelingSpec::KMModelingSpec()
 {

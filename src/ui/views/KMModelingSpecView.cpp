@@ -4,6 +4,12 @@
 
 #include "KMModelingSpecView.h"
 
+#include "KMParametersView.h"
+#include "KMPredictorView.h"
+
+#include "domain/clustering/KMParameters.h"
+#include "domain/learning/KMModelingSpec.h"
+#include "domain/learning/KMPredictor.h"
 
 KMModelingSpecView::KMModelingSpecView()
 {

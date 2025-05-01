@@ -4,9 +4,6 @@
 
 #pragma once
 
-#include "UserInterface.h"
-
-#include "KMAnalysisResults.h"
 #include "KWAnalysisResultsView.h"
 
 

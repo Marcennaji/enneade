@@ -3,6 +3,10 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMAttributesPartitioningManager.h"
+
+#include "KWObject.h"
+#include "KWClassStats.h"
+
 #include "KMClustering.h"
 
 KMAttributesPartitioningManager::KMAttributesPartitioningManager()
@@ -80,7 +84,7 @@ void KMAttributesPartitioningManager::AddValueGroups(KWDRValueGroups* kwdrGroups
 
 	ObjectArray partitions;
 
-	// elaborer les libelles de modalités groupées
+	// elaborer les libelles de modalitï¿½s groupï¿½es
 	for (int i = 0; i < kwdrGroups->GetPartNumber(); i++) {
 
 		StringObject* s = new StringObject();
@@ -119,7 +123,7 @@ void KMAttributesPartitioningManager::AddValueGroups(KWDRValueGroups* kwdrGroups
 
 	AddAttributePartitions(attributeName, partitions.Clone());
 
-	// stocker les libelles de modalités NON groupées, s'il n'y a pas plus de 10 modalités en tout (sans compter la modalite '*') :
+	// stocker les libelles de modalitï¿½s NON groupï¿½es, s'il n'y a pas plus de 10 modalitï¿½s en tout (sans compter la modalite '*') :
 
 	int nbModalities = 0;
 	for (int i = 0; i < kwdrGroups->GetValueGroupNumber(); i++) {
@@ -147,8 +151,8 @@ void KMAttributesPartitioningManager::AddValueGroups(KWDRValueGroups* kwdrGroups
 		}
 	}
 
-	// ajout du libellé "unseen values", en gérant la presence eventuelle d'une modalité ayant deja cette valeur.
-	// ne pas toucher a l'ordonnancement d'origine des modalités
+	// ajout du libellï¿½ "unseen values", en gï¿½rant la presence eventuelle d'une modalitï¿½ ayant deja cette valeur.
+	// ne pas toucher a l'ordonnancement d'origine des modalitï¿½s
 	ObjectArray* sortedModalities = atomicModalities.Clone();
 	sortedModalities->SetCompareFunction(KMCompareLabels);
 	sortedModalities->Sort();
@@ -230,7 +234,7 @@ void KMAttributesPartitioningManager::CopyFrom(const KMAttributesPartitioningMan
 {
 	require(aSource != NULL);
 
-	// copier les ObjectArray de modalités groupées ou d'intervalles (auparavant, supprimer les donnees eventuellement existantes)
+	// copier les ObjectArray de modalitï¿½s groupï¿½es ou d'intervalles (auparavant, supprimer les donnees eventuellement existantes)
 	POSITION position = odAttributesPartitions.GetStartPosition();
 	ALString key;
 	Object* oCurrent;
@@ -254,7 +258,7 @@ void KMAttributesPartitioningManager::CopyFrom(const KMAttributesPartitioningMan
 		odAttributesPartitions.SetAt(key, oaTargetModalities);
 	}
 
-	// idem pour les modalités non groupées :
+	// idem pour les modalitï¿½s non groupï¿½es :
 
 	position = odAtomicModalities.GetStartPosition();
 	while (position != NULL) {

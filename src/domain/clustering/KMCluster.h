@@ -10,11 +10,19 @@
     disable : 4244) // conversions numeriques entre longint et double
 #endif
 
-#include "KMClusterInstance.h"
-#include "KMParameters.h"
-#include "KWAttributeStats.h"
-#include "KWObject.h"
+class KWClass;
+class KWAttribute;
+class ContinuousVector;
+
+class KMClusterInstance;
+
 #include "Object.h"
+#include "KWObject.h"
+#include "KWContinuous.h"
+
+#include "KMParameters.h"
+
+
 
 /// Classe Cluster kmean, chargée de la gestion des instances, des centroides,
 /// du calcul des distances, et des statistiques afferentes

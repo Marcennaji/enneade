@@ -2,13 +2,17 @@
 // This software is distributed under the BSD 3-Clause-clear License, the text of which is available
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
-#ifndef KMClassifierEvaluationTask_H
-#define KMClassifierEvaluationTask_H
-
-#include "KWPredictorEvaluationTask.h"
-#include "KMClassifierEvaluation.h"
+#pragma once
 
 class KMClassifierEvaluation;
+class KMCluster;
+
+#include "KWPredictorEvaluationTask.h"
+
+#include "Object.h"
+#include "domain/clustering/KMClustering.h"
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Tache d'evaluation d'un classifieur KMean sur une base de donnees
@@ -31,10 +35,10 @@ public:
 
 	longint GetInstanceEvaluationNumber() const;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités groupées ou d'intervalles pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s groupï¿½es ou d'intervalles pour un attribut donnï¿½ */
 	const ObjectDictionary& GetGroupedModalitiesFrequencyTables() const;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités non groupées pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s non groupï¿½es pour un attribut donnï¿½ */
 	const ObjectDictionary& GetAtomicModalitiesFrequencyTables() const;
 
 
@@ -67,11 +71,11 @@ protected:
 	longint lInstanceEvaluationNumber;
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités groupees ou intervalles d'un attribut */
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s groupees ou intervalles d'un attribut */
 	ObjectDictionary* odAttributesPartitions;
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités non groupées ('atomiques') d'un attribut */
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s non groupï¿½es ('atomiques') d'un attribut */
 	ObjectDictionary* odAtomicModalities;
 
 	KMClustering* kmEvaluationClustering;
@@ -80,10 +84,10 @@ protected:
 
 	KWAttribute* targetAttribute;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités groupées ou d'intervalles pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s groupï¿½es ou d'intervalles pour un attribut donnï¿½ */
 	ObjectDictionary odGroupedModalitiesFrequencyTables;
 
-	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalités non groupées pour un attribut donné */
+	/** cle = nom d'attribut. Valeur = objet KWFrequencyTable, contenant le comptage des modalitï¿½s non groupï¿½es pour un attribut donnï¿½ */
 	ObjectDictionary odAtomicModalitiesFrequencyTables;
 
 	longint lReadInstancesForMedianComputation;;
@@ -111,4 +115,3 @@ inline const ObjectDictionary& KMClassifierEvaluationTask::GetAtomicModalitiesFr
 	return odAtomicModalitiesFrequencyTables;
 }
 
-#endif

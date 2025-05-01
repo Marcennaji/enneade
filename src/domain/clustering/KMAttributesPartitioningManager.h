@@ -4,8 +4,10 @@
 
 #pragma once
 
-#include "KWObject.h"
-#include "KWClassStats.h"
+#include "Object.h"
+
+class KWDRValueGroups;
+class KWDRIntervalBounds;
 
 
 ///  classe gerant les intervalles et modalites (groupees ou non) des attributs
@@ -27,29 +29,29 @@ public:
 	/** ajout des intervalles de valeurs d'un attribut, a partir d'une regle de derivation */
 	void AddIntervalBounds(KWDRIntervalBounds* kwdrIntervalBounds, const ALString attributeName);
 
-	/** cle = nom d'attribut, Valeur =  ObjectArray de modalités ou d'intervalles*/
+	/** cle = nom d'attribut, Valeur =  ObjectArray de modalitï¿½s ou d'intervalles*/
 	const ObjectDictionary& GetPartitions() const;
 
-	/** cle = nom d'attribut. Valeur = ObjectArray de modalités non groupées */
+	/** cle = nom d'attribut. Valeur = ObjectArray de modalitï¿½s non groupï¿½es */
 	const ObjectDictionary& GetAtomicModalities() const;
 
 
 protected:
 
-	/** memorise un tableau des modalites groupées/intervalles, pour un attribut donné */
+	/** memorise un tableau des modalites groupï¿½es/intervalles, pour un attribut donnï¿½ */
 	void AddAttributePartitions(const ALString attributeName, ObjectArray* partitions);
 
-	/** memorise un tableau des modalites non groupées, pour un attribut donné */
+	/** memorise un tableau des modalites non groupï¿½es, pour un attribut donnï¿½ */
 	void AddAtomicModalities(const ALString attributeName, ObjectArray* modalities);
 
 	// ==============================================  attributs de la classe ===============================================
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités groupees ou intervalles d'un attribut*/
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s groupees ou intervalles d'un attribut*/
 	ObjectDictionary odAttributesPartitions;
 
 	/**
-	Clé = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalités non groupées ('atomiques') d'un attribut */
+	Clï¿½ = nom de l'attribut, valeur = ObjectArray * contenant des StringObject * --> liste de toutes les modalitï¿½s non groupï¿½es ('atomiques') d'un attribut */
 	ObjectDictionary odAtomicModalities;
 
 };

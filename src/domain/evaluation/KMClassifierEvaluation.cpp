@@ -3,10 +3,21 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMClassifierEvaluation.h"
-#include "KMClusteringQuality.h"
-#include "KMClassifierEvaluationTask.h"
 
 #include <sstream>
+
+#include "KMPredictorEvaluation.h"
+#include "KMClassifierEvaluationTask.h"
+#include "KWPredictorEvaluationTask.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMClustering.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/learning/KMTrainedClassifier.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMTrainedPredictor.h"
+
 
 int KMCompareTargetProbs(const void* elem1, const void* elem2);
 
@@ -144,7 +155,7 @@ void KMClassifierEvaluation::WriteKMeanStatistics(ostream& ost) {
 		TaskProgression::DisplayLabel("Writing detailed statistics...");
 		TaskProgression::DisplayProgression(0);
 
-		// tri des attributs par ordre decroissant de level (si supervisé), ou par nom (si non supervisé)
+		// tri des attributs par ordre decroissant de level (si supervisï¿½), ou par nom (si non supervisï¿½)
 		boolean bSortOnLevel = false;
 		boolean bHasNativeCategoricalAttributes = false;
 
@@ -214,7 +225,7 @@ void KMClassifierEvaluation::WriteClustersGravityCenters(ostream& ost) {
 
 	ost << "\tFrequency\tCoverage\t";
 
-	// affichage des modalités
+	// affichage des modalitï¿½s
 	const ObjectArray& modalities = predictorEvaluationTask->GetClustering()->GetTargetAttributeValues();
 	for (int i = 0; i < modalities.GetSize(); i++) {
 		StringObject* o = cast(StringObject*, modalities.GetAt(i));
@@ -231,7 +242,7 @@ void KMClassifierEvaluation::WriteClustersGravityCenters(ostream& ost) {
 
 	// trier les clusters sur les probas de la valeur cible, par ordre decroissant, mais sans toucher a l'ordre initial des clusters (sinon effets de bords possibles). On fait donc
 	// une copie temporaire des clusters.
-	// NB. le numero de cluster affiché après le tri, doit rester inchangé
+	// NB. le numero de cluster affichï¿½ aprï¿½s le tri, doit rester inchangï¿½
 	ObjectArray* clusters = new ObjectArray;
 	for (int idxCluster = 0; idxCluster < predictorEvaluationTask->GetClustering()->GetClusters()->GetSize(); idxCluster++) {
 		clusters->Add(predictorEvaluationTask->GetClustering()->GetClusters()->GetAt(idxCluster));
@@ -276,8 +287,8 @@ void KMClassifierEvaluation::WriteClustersGravityCenters(ostream& ost) {
 		ost << (c->GetFrequency() == 0 ? 0 : c->GetCoverage(lInstanceEvaluationNumber)) << "\t";
 		totalCoverage += (c->GetFrequency() == 0 ? 0 : c->GetCoverage(lInstanceEvaluationNumber));
 
-		// affichage des probas des modalités de la valeur cible
-		// NB. ces probas sont issues de l'apprentissage OU du dico de modelisation, et non de l'evaluation elle même
+		// affichage des probas des modalitï¿½s de la valeur cible
+		// NB. ces probas sont issues de l'apprentissage OU du dico de modelisation, et non de l'evaluation elle mï¿½me
 		const ContinuousVector& targetValues = c->GetTargetProbs();
 		totalTargetValues.SetSize(targetValues.GetSize());
 
@@ -435,7 +446,7 @@ void KMClassifierEvaluation::WriteJSONKMeanStatistics(JSONFile* fJSON) {
 		// regenerer les attributs CellIndex (qui sont systematiquement nettoyes apres chaque evaluation, train ou test)
 		KMTrainedPredictor::AddCellIndexAttributes(trainedPredictor);
 
-		// tri des attributs par ordre decroissant de level (si supervisé), ou par nom (si non supervisé)
+		// tri des attributs par ordre decroissant de level (si supervisï¿½), ou par nom (si non supervisï¿½)
 		boolean bSortOnLevel = false;
 		boolean bHasNativeCategoricalAttributes = false;
 
@@ -490,7 +501,7 @@ void KMClassifierEvaluation::WriteJSONClustersGravityCenters(JSONFile* fJSON) {
 
 	// trier les clusters sur les probas de la valeur cible, par ordre decroissant, mais sans toucher a l'ordre initial des clusters (sinon effets de bords possibles). On fait donc
 	// une copie temporaire des clusters.
-	// NB. le numero de cluster affiché après le tri, doit rester inchangé
+	// NB. le numero de cluster affichï¿½ aprï¿½s le tri, doit rester inchangï¿½
 	ObjectArray* clusters = new ObjectArray;
 	for (int idxCluster = 0; idxCluster < predictorEvaluationTask->GetClustering()->GetClusters()->GetSize(); idxCluster++) {
 		clusters->Add(predictorEvaluationTask->GetClustering()->GetClusters()->GetAt(idxCluster));
@@ -508,8 +519,8 @@ void KMClassifierEvaluation::WriteJSONClustersGravityCenters(JSONFile* fJSON) {
 		fJSON->WriteKeyLongint("frequency", c->GetFrequency());
 		fJSON->WriteKeyContinuous("coverage", (c->GetFrequency() == 0 ? 0 : c->GetCoverage(lInstanceEvaluationNumber)));
 
-		// affichage des probas des modalités de la valeur cible
-		// NB. ces probas sont issues de l'apprentissage OU du dico de modelisation, et non de l'evaluation elle même
+		// affichage des probas des modalitï¿½s de la valeur cible
+		// NB. ces probas sont issues de l'apprentissage OU du dico de modelisation, et non de l'evaluation elle mï¿½me
 		const ContinuousVector& targetValues = c->GetTargetProbs();
 		const ObjectArray& modalities = predictorEvaluationTask->GetClustering()->GetTargetAttributeValues();
 

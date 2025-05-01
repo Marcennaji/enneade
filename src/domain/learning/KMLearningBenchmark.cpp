@@ -3,14 +3,18 @@
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
 #include "KMLearningBenchmark.h"
+
 #include "KMLearningProblem.h"
-#include "KMClusteringQuality.h"
-#include "KMParameters.h"
-#include "KMClassifierEvaluation.h"
-#include "KMClassifierEvaluationTask.h"
+#include "domain/clustering/KMClusteringQuality.h"
+#include "domain/clustering/KMCluster.h"
+#include "domain/clustering/KMParameters.h"
+#include "domain/evaluation/KMClassifierEvaluation.h"
+#include "domain/evaluation/KMClassifierEvaluationTask.h"
+#include "domain/learning/KMPredictor.h"
+#include "domain/learning/KMPredictorKNN.h"
 
 
-// NB. pas de methode SetPredictorFilter dans la biblio --> obligé de dériver une classe juste pour modifier le filtre ?!
+// NB. pas de methode SetPredictorFilter dans la biblio --> obligï¿½ de dï¿½river une classe juste pour modifier le filtre ?!
 const ALString KMLearningBenchmark::GetPredictorFilter() const
 {
 	return "Naive Bayes;Selective Naive Bayes;Baseline;" + ALString(KMPredictor::PREDICTOR_NAME) + ";" + ALString(KMPredictorKNN::PREDICTOR_NAME);
@@ -230,7 +234,7 @@ void KMLearningBenchmark::EvaluateExperiment(int nBenchmark, int nPredictor,
 			grouperSpec->SetUnsupervisedMethodName("BasicGrouping");
 			discretizerSpec->SetUnsupervisedMethodName("EqualFrequency");
 
-			//  "basic grouping" des variables categorielles, si non supervisé, ou si option volontairement choisie
+			//  "basic grouping" des variables categorielles, si non supervisï¿½, ou si option volontairement choisie
 			if (learningSpec->GetTargetAttributeType() == KWType::None or
 				kmpredictor->GetKMParameters()->GetCategoricalPreprocessingType() == KMParameters::PreprocessingType::BasicGrouping) {
 
@@ -238,7 +242,7 @@ void KMLearningBenchmark::EvaluateExperiment(int nBenchmark, int nPredictor,
 				grouperSpec->SetUnsupervisedMethodName("BasicGrouping");
 				grouperSpec->SetMaxGroupNumber(kmpredictor->GetKMParameters()->GetPreprocessingMaxGroupNumber());
 			}
-			// EqualFreq des continuous, si Rank Normalization (cas "automatique" non supervisé, ou ou si option volontairement choisie)
+			// EqualFreq des continuous, si Rank Normalization (cas "automatique" non supervisï¿½, ou ou si option volontairement choisie)
 			if ((learningSpec->GetTargetAttributeType() == KWType::None and
 				kmpredictor->GetKMParameters()->GetContinuousPreprocessingType() == KMParameters::PreprocessingType::AutomaticallyComputed)
 				or kmpredictor->GetKMParameters()->GetContinuousPreprocessingType() == KMParameters::PreprocessingType::RankNormalization) {

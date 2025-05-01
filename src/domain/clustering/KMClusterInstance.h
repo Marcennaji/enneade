@@ -5,11 +5,16 @@
 #pragma once
 
 
-#include "Object.h"
-#include "KWObject.h"
-#include "KMParameters.h"
+class KWObject;
+class KWLoadIndex;
 
+class KMParameters;
 class KMClusterInstanceAttribute;
+
+#include "Object.h"
+#include "KWContinuous.h"
+#include "KWLoadIndex.h"
+#include "KWSymbol.h"
 
 //////////////////////
 /// classe representant un individu appartenant a un cluster. Il peut, ou non, correspondre a une instance de BDD reelle. Il peut etre construit a partir d'un objet de database (KWObject), mais ne necessite pas la persistance en memoire du KWObject correspondant, une fois construit.

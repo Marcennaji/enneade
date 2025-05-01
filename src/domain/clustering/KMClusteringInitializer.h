@@ -2,14 +2,19 @@
 // This software is distributed under the BSD 3-Clause-clear License, the text of which is available
 // at https://spdx.org/licenses/BSD-3-Clause-Clear.html or see the "LICENSE" file for more details.
 
-#ifndef KMCLUSTERING_INITIALIZER_H
-#define KMCLUSTERING_INITIALIZER_H
+#pragma once
+
+class KWDatabase;
+
+class KMClustering;
+class KWAttribute;
+class KMCluster;
+class KMParameters;
+
+#include "Object.h"
+#include "KWSymbol.h"
 
 
-#include "KWObject.h"
-#include "KMParameters.h"
-#include "KMClustering.h"
-#include "KMCluster.h"
 
 /////////////////////////////////////////////////
 /// Classe de gestion de l'initialisation d'un clustering
@@ -141,7 +146,6 @@ inline const longint KMClusteringInitializer::GetInstancesWithMissingValues() co
 	return lInstancesWithMissingValues;
 }
 
-#endif
 
 
 

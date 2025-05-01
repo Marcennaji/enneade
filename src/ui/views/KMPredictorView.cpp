@@ -4,6 +4,10 @@
 
 #include "KMPredictorView.h"
 
+#include "domain/learning/KMPredictor.h"
+#include "KMParametersView.h"
+#include "domain/clustering/KMParameters.h"
+
 
 KMPredictorView::KMPredictorView()
 {

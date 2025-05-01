@@ -4,6 +4,8 @@
 
 #include "KMPredictorEvaluatorView.h"
 
+#include "domain/evaluation/KMPredictorEvaluator.h"
+
 
 KMPredictorEvaluatorView::KMPredictorEvaluatorView()
 {

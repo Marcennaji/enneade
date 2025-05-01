@@ -4,15 +4,14 @@
 
 #pragma once
 
+class KMClustering;
+class KMParameters;
+class KMCluster;
+
 #include "KWTrainedPredictor.h"
 
-#include "KMPredictor.h"
-#include "KMClustering.h"
-
-class KMPredictor;
-
 /////////////////////////////////////////////////////////////////////////////
-/// Predicteur issu de l'apprentissage kmean (cas non supervisé)
+/// Predicteur issu de l'apprentissage kmean (cas non supervisï¿½)
 //
 
 class KMTrainedPredictor : public KWTrainedPredictor
@@ -30,7 +29,7 @@ public:
 	/** extraire les intervalles/modalites des attributs necessaires, a partir d'un dico */
 	void ExtractPartitions(KWClass* aClass);
 
-	/** acces au modele resultant d'un apprentissage KMean, reconstitué a partir d'un dico de modelisation */
+	/** acces au modele resultant d'un apprentissage KMean, reconstituï¿½ a partir d'un dico de modelisation */
 	KMClustering* GetModelingClustering() const;
 
 	/** creer les clusters dans un resultat kmean, a partir d'un dico de modelisation
@@ -62,7 +61,7 @@ protected:
 	sur un attribut de type BasicGrouping */
 	void ExtractBasicGrouping(const KWAttribute* attribute);
 
-	/** modele reconstitué a partir d'un dico de modelisation, ou recuperé a partir d'un apprentissage effectué) */
+	/** modele reconstituï¿½ a partir d'un dico de modelisation, ou recuperï¿½ a partir d'un apprentissage effectuï¿½) */
 	KMClustering* kmModelingClustering;
 
 	/** parametres d'un traitement kmean */

@@ -5,7 +5,6 @@
 #pragma once
 
 #include "KWLearningBenchmark.h"
-#include "KMPredictor.h"
 
 
 ////////////////////////////////////////////////////////////

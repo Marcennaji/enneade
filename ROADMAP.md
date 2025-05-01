@@ -8,7 +8,9 @@ This roadmap describes the planned evolution of the Enneade project toward a mai
 
 - [x] Migrate Enneade code to compile with Khiops v. 10.7
 - [x] Create a Windows installer 
-- [ ] Validate core workflows via GUI (ongoing)
+- [x] Validate core workflows via GUI (still ongoing)
+- [x] Move files into domain-specific folders (`domain/`, `ui/`, `application/`, etc.)
+- [x] Limit `#include` dependencies and make systematic use of forward declarations
 - [ ] Define minimal unit and integration tests
 - [ ] Set up GitHub Actions for:
   - Automatic compilation
@@ -21,16 +23,14 @@ This roadmap describes the planned evolution of the Enneade project toward a mai
 ## 🛠️ Phase 2 – Code Refactoring & Design Improvements
 
 ### 🔁 Structure
-- [ ] Move files into domain-specific folders (`domain/`, `ui/`, `application/`, etc.)
 - [ ] Introduce matching C++ namespaces
+- [ ] Analyze design structure using **CppDepend**
 
 ### 🧱 Decoupling & Clean Architecture
 - [ ] Minimize coupling between components:
-  - Limit `#include` dependencies
   - Prefer composition over inheritance (where appropriate)
   - Introduce Khiops adapter classes in `infrastructure/khiops_wrappers`
 - [ ] Replace inheritance from KW* classes with adapters (where possible)
-- [ ] Analyze design structure using **CppDepend**
 
 ### 🧪 Testing
 - [ ] Create unit tests for core components

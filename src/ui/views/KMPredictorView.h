@@ -4,13 +4,11 @@
 
 #pragma once
 
-#include "UserInterface.h"
-#include "KWPredictorView.h"
-#include "KMPredictor.h"
-#include "KMParametersView.h"
-#include "KMModelingSpecView.h"
+class KMPredictor;
 
-class KMModelingSpecView;
+#include "KWPredictorView.h"
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Vue sur le parametrage specifique d'un classifieur KMean

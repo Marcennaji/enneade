@@ -4,12 +4,9 @@
 
 #pragma once
 
-#include "UserInterface.h"
-#include "KWPredictorView.h"
-#include "KMPredictorKNN.h"
-#include "KMParametersView.h"
-#include "KMModelingSpecView.h"
+class KMPredictorKNN;
 
+#include "KWPredictorView.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Vue sur le parametrage specifique d'un classifieur KNN

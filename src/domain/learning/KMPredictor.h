@@ -4,26 +4,14 @@
 
 #pragma once
 
-#include "KWPredictor.h"
-#include "KWDRPredictor.h"
-#include "KWClassStats.h"
 
-#include "KWSTDatabaseTextFile.h"
-
-#include "KMTrainedPredictor.h"
-#include "KMTrainedClassifier.h"
-#include "KMParameters.h"
-#include "KMClustering.h"
-#include "KMClusteringMiniBatch.h"
-#include "KMPredictorReport.h"
-#include "KMPredictorEvaluation.h"
-#include "KMClassifierEvaluation.h"
-#include "KMDRClassifier.h"
-#include "KMDRLocalModelChooser.h"
-
-class KMPredictorEvaluation;
 class KMTrainedClassifier;
 class KMTrainedPredictor;
+class KMClustering;
+class KMCluster;
+class KMParameters;
+
+#include "KWPredictor.h"
 
 /////////////////////////////////////////////////////////////////////
 // Classe KMPredictor

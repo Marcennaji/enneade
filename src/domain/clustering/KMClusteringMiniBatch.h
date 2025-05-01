@@ -4,7 +4,12 @@
 
 #pragma once
 
+class KMParameters;
+class KWDatabase;
+class KWAttribute;
+
 #include "KMClustering.h"
+
 
 ////////////////////////
 /// clustering K-Means selon l'algo des mini-batches
