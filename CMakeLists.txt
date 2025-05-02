@@ -1,13 +1,8 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(enneade CXX)
+project(enneade CXX) 
 
 set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type" FORCE)
-
-# for now, Enforce C++11 standard
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Enable RTTI (Run-Time Type Information)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR ")
@@ -16,26 +11,12 @@ set(MPI_CXX_INCLUDE_PATH "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
 set(MPI_CXX_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpi.lib")
 set(MPIEXEC "C:/Program Files/Microsoft MPI/Bin/mpiexec.exe")
 
-# Use Khiops 
-include(FetchContent)
-FetchContent_Declare(
-    khiops
-    GIT_REPOSITORY "https://github.com/KhiopsML/khiops.git"
-    GIT_TAG "10.7.0-b.0")
 
-set(BUILD_JARS ON CACHE BOOL "Enable building JAR files" FORCE)
+add_subdirectory(src)
 
-FetchContent_MakeAvailable(khiops)
+set(KHIOPS_SOURCE_DIR ${KHIOPS_SOURCE_DIR} CACHE PATH "Khiops source path")
 
-# Get the path to the Khiops source directory
-FetchContent_GetProperties(khiops SOURCE_DIR KHIOPS_SOURCE_DIR)
+Message(STATUS "KHIOPS_SOURCE_DIR in main cmakelist : ${KHIOPS_SOURCE_DIR}")
 
-file(GLOB_RECURSE files  ${PROJECT_SOURCE_DIR}/src/*cpp ${PROJECT_SOURCE_DIR}/src/*h )
-add_executable(enneade  ${files} )
+add_subdirectory(tests)
 
-set_khiops_options(enneade)
-
-target_include_directories(enneade PRIVATE ${PROJECT_SOURCE_DIR}/src ${KHIOPS_SOURCE_DIR}/src/Learning/KWDataUtils  ${KHIOPS_SOURCE_DIR}/src/Parallel/PLMPI)
-
-# Link with Khiops libraries
-target_link_libraries(enneade KMDRRuleLibrary KWLearningProblem PLMPI)
