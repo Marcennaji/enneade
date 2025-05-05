@@ -1,21 +1,4 @@
 
-# Use Khiops 
-include(FetchContent)
-FetchContent_Declare(
-    khiops
-    GIT_REPOSITORY "https://github.com/KhiopsML/khiops.git"
-    GIT_TAG "10.7.0-b.0")
-
-set(BUILD_JARS ON CACHE BOOL "Enable building JAR files" FORCE)
-set(C11 OFF CACHE BOOL "Disable C++11 standard" FORCE)
-
-
-FetchContent_MakeAvailable(khiops)
-
-
-# Get the path to the Khiops source directory
-FetchContent_GetProperties(khiops SOURCE_DIR KHIOPS_SOURCE_DIR)
-
 file(GLOB_RECURSE core_files
     ${PROJECT_SOURCE_DIR}/src/domain/*.cpp ${PROJECT_SOURCE_DIR}/src/domain/*.h
     ${PROJECT_SOURCE_DIR}/src/infrastructure/*.cpp ${PROJECT_SOURCE_DIR}/src/infrastructure/*.h

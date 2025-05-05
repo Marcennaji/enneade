@@ -14,19 +14,6 @@ endif()
 
 enable_testing()
 
-# Use Khiops 
-FetchContent_Declare(
-    khiops
-    GIT_REPOSITORY "https://github.com/KhiopsML/khiops.git"
-    GIT_TAG "10.7.0-b.0")
-
-set(BUILD_JARS ON CACHE BOOL "Enable building JAR files" FORCE)
-
-FetchContent_MakeAvailable(khiops)
-
-
-# Get the path to the Khiops source directory
-FetchContent_GetProperties(khiops SOURCE_DIR KHIOPS_SOURCE_DIR)
 
 file(GLOB_RECURSE test_files *.h *.cpp)
 

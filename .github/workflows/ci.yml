@@ -1,46 +1,37 @@
-name: CI - Enneade Unit Tests
+name: CI Enneade
 
 on:
   push:
-    branches:
-      - main  # Run tests on pushes to the main branch
+    branches: [main]
   pull_request:
-    branches:
-      - main  # Run tests on pull requests to the main branch
+    branches: [main]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Set up CMake
-      - name: Install CMake
-        uses: jwlawson/actions-setup-cmake@v1
-        with:
-          cmake-version: '3.16.3'  # Minimum version required by your project
-
-      # Set up dependencies
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libgtest-dev cmake
+          sudo apt-get install -y ninja-build cmake g++ openjdk-17-jdk
 
-      # Configure the project
-      - name: Configure CMake
+      - name: Configure project with Ninja Multi-Config
         run: |
-          cmake -S . -B build -DTESTING=ON
+           cmake -S . -B build -G "Ninja Multi-Config" \
+            -DCMAKE_CXX_STANDARD=14 \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_CONFIGURATION_TYPES="Debug;Release;RelWithDebInfo" \
+            -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install \
+            -DMPI=OFF \
+            -DBUILD_JARS=ON \
+            -DTESTING=ON
+            
+      - name: Build (Release)
+        run: cmake --build build --config Release
 
-      # Build the project
-      - name: Build
-        run: |
-          cmake --build build --config Debug
-
-      # Run unit tests
       - name: Run tests
-        run: |
-          ctest --test-dir build --output-on-failure
-          
+        run: ctest --test-dir build --build-config Release --output-on-failure
