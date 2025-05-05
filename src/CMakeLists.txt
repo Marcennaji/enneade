@@ -7,6 +7,8 @@ FetchContent_Declare(
     GIT_TAG "10.7.0-b.0")
 
 set(BUILD_JARS ON CACHE BOOL "Enable building JAR files" FORCE)
+set(C11 OFF CACHE BOOL "Disable C++11 standard" FORCE)
+
 
 FetchContent_MakeAvailable(khiops)
 

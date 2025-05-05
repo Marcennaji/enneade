@@ -35,6 +35,7 @@ add_executable(${PROJECT_NAME}_test ${test_files})
 set_khiops_options(${PROJECT_NAME}_test)
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE 
+    ${PROJECT_SOURCE_DIR}/tests
     ${PROJECT_SOURCE_DIR}/src
     ${KHIOPS_SOURCE_DIR}/src/Learning/KWDataUtils
     ${KHIOPS_SOURCE_DIR}/src/Parallel/PLMPI

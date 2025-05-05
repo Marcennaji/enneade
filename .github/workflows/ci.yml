@@ -1,0 +1,46 @@
+name: CI - Enneade Unit Tests
+
+on:
+  push:
+    branches:
+      - main  # Run tests on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Run tests on pull requests to the main branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up CMake
+      - name: Install CMake
+        uses: jwlawson/actions-setup-cmake@v1
+        with:
+          cmake-version: '3.16.3'  # Minimum version required by your project
+
+      # Set up dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libgtest-dev cmake
+
+      # Configure the project
+      - name: Configure CMake
+        run: |
+          cmake -S . -B build -DTESTING=ON
+
+      # Build the project
+      - name: Build
+        run: |
+          cmake --build build --config Debug
+
+      # Run unit tests
+      - name: Run tests
+        run: |
+          ctest --test-dir build --output-on-failure
+          
