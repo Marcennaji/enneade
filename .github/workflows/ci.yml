@@ -28,10 +28,23 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install \
             -DMPI=OFF \
             -DBUILD_JARS=ON \
-            -DTESTING=ON
-            
+            -DTESTING=OFF
+
       - name: Build (Release)
         run: cmake --build build --config Release
 
       - name: Run tests
-        run: ctest --test-dir build --build-config Release --output-on-failure
+        run: |
+          # Find the test executable (Release, Debug, wherever it was built)
+          test_exe=$(find build -type f -name 'enneade_test' -executable)
+      
+          if [[ -z "$test_exe" ]]; then
+            echo "❌ Test executable not found!"
+            exit 1
+          fi
+      
+          echo "✅ Found test executable at: $test_exe"
+          echo "🏃 Running tests..."
+      
+          # Run the test binary with verbose output
+          "$test_exe" --gtest_color=yes --gtest_output=standard

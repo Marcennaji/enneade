@@ -11,8 +11,8 @@ This roadmap describes the planned evolution of the Enneade project toward a mai
 - [x] Validate core workflows via GUI (still ongoing)
 - [x] Move files into domain-specific folders (`domain/`, `ui/`, `application/`, etc.)
 - [x] Limit `#include` dependencies and make systematic use of forward declarations
-- [ ] Define minimal unit and integration tests
-- [ ] Set up GitHub Actions for:
+- [x] Define minimal unit and integration tests
+- [x] Set up GitHub Actions for:
   - Automatic compilation
   - Running tests
   - Tracking test failures

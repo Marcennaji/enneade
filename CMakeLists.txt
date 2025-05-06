@@ -8,8 +8,8 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 if(NOT DEFINED MPI)
-    message(STATUS "MPI not specified, defaulting to ON")
-    set(MPI ON CACHE BOOL "Use MPI libraries")
+    message(STATUS "MPI not specified, defaulting to OFF")
+    set(MPI OFF CACHE BOOL "Disable MPI libraries")
 endif()
 
 if(NOT DEFINED BUILD_JARS)
@@ -18,8 +18,8 @@ if(NOT DEFINED BUILD_JARS)
 endif()
 
 if(NOT DEFINED TESTING)
-    message(STATUS "TESTING not specified, defaulting to ON")
-    set(TESTING ON CACHE BOOL "Enable unit tests")
+    message(STATUS "TESTING (Khiops unit tests) not specified, defaulting to OFF")
+    set(TESTING OFF CACHE BOOL "Disable Khiops unit tests")
 endif()
 
 if(NOT DEFINED C11)

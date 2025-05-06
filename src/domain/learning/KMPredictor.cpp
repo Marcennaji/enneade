@@ -5,6 +5,18 @@
 #include "KMPredictor.h"
 
 #include <sstream>
+
+#include <cstring>
+
+#ifdef _WIN32
+    #include <string.h>
+    #define stricmp _stricmp
+#else
+    #include <strings.h>
+    #define stricmp strcasecmp
+#endif
+
+
 #include "KWPredictorNaiveBayes.h"
 #include "SNBPredictorSelectiveNaiveBayes.h"
 
@@ -3257,40 +3269,19 @@ KMCompareLevel(const void* elem1, const void* elem2)
 }
 
 
-int
-KMCompareAttributeName(const void* elem1, const void* elem2)
+int KMCompareAttributeName(const void* elem1, const void* elem2)
 {
-	KWAttribute* attr1 = (KWAttribute*) * (Object**)elem1;
-	KWAttribute* attr2 = (KWAttribute*) * (Object**)elem2;
+	KWAttribute* attr1 = *(KWAttribute* const *)elem1;
+	KWAttribute* attr2 = *(KWAttribute* const *)elem2;
 
-	// Comparaison de 2 attributs sur leur nom
-	const ALString s1 = attr1->GetName();
-	const ALString s2 = attr2->GetName();
+	// Comparaison de 2 attributs sur leur nom (insensible à la casse)
+	const ALString& s1 = attr1->GetName();
+	const ALString& s2 = attr2->GetName();
 
-#ifndef __UNIX__
+	int cmp = stricmp(s1, s2);
 
-	int i = _stricmp(s1, s2);
-
-	if (i == 0)
-		return 0;
-	else
-		if (i > 0)
-			return 1;
-		else
-			return -1;
-#else
-
-	int i = strcasecmp(s1, s2);
-
-	if (i == 0)
-		return 0;
-	else
-		if (i > 0)
-			return 1;
-		else
-			return -1;
-#endif
-
+	// Normalisation du résultat en -1, 0, ou 1
+	return (cmp > 0) - (cmp < 0);
 }
 
 

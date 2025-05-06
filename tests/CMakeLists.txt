@@ -7,10 +7,15 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Required for MSVC runtime flags
-if(MSVC)
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+# Workaround for windows: https://github.com/actions/virtual-environments/issues/5900
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+set_property(TARGET gtest PROPERTY MSVC_RUNTIME_LIBRARY MultiThreaded)
+set_property(TARGET gtest_main PROPERTY MSVC_RUNTIME_LIBRARY MultiThreaded)
+else()
+set_property(TARGET gtest PROPERTY MSVC_RUNTIME_LIBRARY MultiThreadedDebug)
+set_property(TARGET gtest_main PROPERTY MSVC_RUNTIME_LIBRARY MultiThreadedDebug)
 endif()
+
 
 enable_testing()
 

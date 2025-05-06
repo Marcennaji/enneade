@@ -19,7 +19,11 @@ target_include_directories(${PROJECT_NAME}_core PRIVATE
 
 set_khiops_options(${PROJECT_NAME}_core)
 
-target_link_libraries(${PROJECT_NAME}_core KMDRRuleLibrary KWLearningProblem PLMPI)
+if(MPI)
+  target_link_libraries(${PROJECT_NAME}_core PUBLIC PLMPI)
+endif()
+
+target_link_libraries(${PROJECT_NAME}_core KMDRRuleLibrary KWLearningProblem)
 
 # create an executable for the main function
 add_executable(${PROJECT_NAME} main.cpp)
